@@ -1,37 +1,8 @@
-## Welcome to GitHub Pages
-
-You can use the [editor on GitHub](https://github.com/Neyveen/svn-migration/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Neyveen/svn-migration/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+# Get repository users
+svn log svn://your-svn-repository --xml | grep -P "^<author" | sort -u | perl -pe 's/<author>(.*?)<\/author>/$1 = /' > C:\users.txt
+# Create local git repository
+git svn clonesvn://your-svn-repository C:your\.git\path --authors-file=C:\users.txt --no-metadata -s your-repository-name
+# Transform remote tag in git tags
+git for-each-ref refs/remotes/tags | cut -d / -f 4- | grep -v "@" | Where-Object { git tag "$_" "tags/$_"; git branch -r -d "tags/$_";}
+# Transform branch tag in git branches
+git for-each-ref refs/remotes | cut -d / -f 3- | grep -v "@" | Where-Object { git branch "refs/remotes/$_"; git branch -r -d "$_"; }
