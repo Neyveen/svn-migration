@@ -11,4 +11,4 @@
 - Remove unwanted branches in .git\refs\heads if so
 - Remove unwanted tags in .git\ref\tags if so
 - Add remote repository `git remote add origin https:\\repoGit.git`
-- Execute git push origin --mirror
+- Execute `git push origin --mirror`
