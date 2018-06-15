@@ -5,4 +5,4 @@
 ### Transform svn tag in git tags
 `git for-each-ref refs/remotes/origin/tags | cut -d / -f 5- | grep -v "@" | Where-Object { git tag "$_" "origin/tags/$_"; git branch -r -d "origin/tags/$_";}`
 ### Transform svn branches in git branches
-`git for-each-ref refs/remotes/origin | cut -d / -f 4- | grep -v "@" | Where-Object { git branch "refs/remotes/origin/$_"; git branch -r -d "origin/$_"; }`
+`git for-each-ref refs/remotes/origin | cut -d / -f 4- | grep -v "@" | Where-Object { git branch "$_" "refs/remotes/origin/$_"; git branch -r -d "origin/$_"; }`
