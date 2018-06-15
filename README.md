@@ -5,4 +5,4 @@
 ### Transform remote tag in git tags
 `git for-each-ref refs/remotes/origin/tags | cut -d / -f 5- | grep -v "@" | Where-Object { git tag "$_" "origin/tags/$_"; git branch -r -d "origin/tags/$_";}`
 ### Transform branches in git branches
-`git for-each-ref refs/remotes | cut -d / -f 3- | grep -v "@" | Where-Object { git branch "refs/remotes/$_"; git branch -r -d "$_"; }`
+`git for-each-ref refs/remotes/origin | cut -d / -f 3- | grep -v "@" | Where-Object { git branch "refs/remotes/origin/$_"; git branch -r -d "$_"; }`
