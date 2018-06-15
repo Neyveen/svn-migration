@@ -7,8 +7,8 @@
 ### Transform svn branches to git branches
 `git for-each-ref refs/remotes/origin | cut -d / -f 4- | grep -v "@" | Where-Object { If ($_ -like "trunk") { git branch -r -d "origin/$_";} Else {git branch "$_" "refs/remotes/origin/$_"; git branch -r -d "origin/$_";} }`
 ### Push
--Remove .git\remotes
--Remove unwanted branches in .git\heads if so
--Remove unwanted tags in .git\tags if so
--Add remote repository `git remote add origin https:\\repoGit.git`
--Execute git push origin --mirror
+- Remove .git\remotes
+- Remove unwanted branches in .git\heads if so
+- Remove unwanted tags in .git\tags if so
+- Add remote repository `git remote add origin https:\\repoGit.git`
+- Execute git push origin --mirror
